@@ -1,4 +1,4 @@
-# API Specification
+# API Documentation
 
 ## Authentication
 
