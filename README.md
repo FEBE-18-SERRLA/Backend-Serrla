@@ -1,6 +1,14 @@
 # Serrla Web Sevices
 
-## Tech Stack
+## Overview
+
+Serrum Learning App (Serrla) adalah aplikasi untuk membantu dalam mengakomodir ketertarikan, minat, bakat dan potensi masing-masing siswa agar dapat mengartikulasikannya ke dalam medium seni melalui sebuah inovasi digital.
+
+## ERD
+
+https://lucid.app/lucidchart/ad1495cd-a071-4dd7-8cc9-2991e231afa9/edit?invitationId=inv_13897c95-148e-4141-83de-bac86ba13920&page=0_0#
+
+## Teknologi yang Digunakan
 
 - Javascript
 - NodeJS
@@ -9,7 +17,7 @@
 - Sequelize
 - JSON Web Token
 
-## Features
+## Fitur
 
 - Registrasi akun
 - Login
