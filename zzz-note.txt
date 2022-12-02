@@ -1,5 +1,0 @@
-ganti id string ke id integer
-h2 ke h3, h1 ke h2
-ganti id_user ke user_id dst
-
-di model index cek configff
