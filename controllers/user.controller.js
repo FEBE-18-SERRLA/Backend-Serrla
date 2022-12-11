@@ -120,16 +120,28 @@ module.exports = {
     try {
       const { id } = req.params;
       const { first_name, last_name, email, password, telp, school_id, birthdate } = req.body;
-      const hashedPassword = bcrypt.hashSync(password, 10);
 
-      await User.update(
-        { first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword },
-        {
-          where: {
-            id,
-          },
-        }
-      );
+      if (!password) {
+        await User.update(
+          { first_name, birthdate, school_id, last_name, telp, email },
+          {
+            where: {
+              id,
+            },
+          }
+        );
+      } else {
+        const hashedPassword = bcrypt.hashSync(password, 10);
+
+        await User.update(
+          { first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword },
+          {
+            where: {
+              id,
+            },
+          }
+        );
+      }
 
       const users = await User.findByPk(id);
 
