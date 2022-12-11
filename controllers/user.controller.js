@@ -121,11 +121,11 @@ module.exports = {
       const { id } = req.params;
       const { first_name, last_name, email, password, telp, school_id, birthdate } = req.body;
 
-      if (password) {
-        const hashedPassword = bcrypt.hashSync(password, 10);
-
+      console.log(password);
+      if (!password) {
+        console.log("Password null");
         await User.update(
-          { first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword },
+          { first_name, birthdate, school_id, last_name, telp, email },
           {
             where: {
               id,
@@ -133,8 +133,9 @@ module.exports = {
           }
         );
       } else {
+        const hashedPassword = bcrypt.hashSync(password, 10);
         await User.update(
-          { first_name, birthdate, school_id, last_name, telp, email },
+          { first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword },
           {
             where: {
               id,
