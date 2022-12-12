@@ -15,6 +15,7 @@ const User = db.define("user", {
   picture: Sequelize.STRING,
   school_id: Sequelize.INTEGER,
   role_id: Sequelize.INTEGER,
+  gender: Sequelize.ENUM("Laki-Laki", "Perempuan"),
 });
 User.hasOne(School, { foreignKey: "id" });
 User.belongsTo(School, { foreignKey: "school_id" });

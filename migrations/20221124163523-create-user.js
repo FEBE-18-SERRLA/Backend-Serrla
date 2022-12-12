@@ -30,6 +30,9 @@ module.exports = {
       birthdate: {
         type: Sequelize.DATEONLY,
       },
+      gender: {
+        type: DataTypes.ENUM("Laki-Laki", "Perempuan"),
+      },
       telp: {
         type: Sequelize.BIGINT,
         unique: true,

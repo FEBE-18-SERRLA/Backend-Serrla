@@ -41,7 +41,7 @@ module.exports = {
 
   addUser: async (req, res) => {
     try {
-      const { first_name, last_name, email, password, telp, school_id, role_id, birthdate, picture } = req.body;
+      const { first_name, last_name, email, password, telp, school_id, role_id, birthdate, picture, gender } = req.body;
       const saltRounds = 10;
       const checkEmail = await User.findAll({
         where: {
@@ -51,7 +51,7 @@ module.exports = {
 
       if (checkEmail.length === 0) {
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
-        const user = await User.create({ picture, first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword, role_id });
+        const user = await User.create({ picture, gender, first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword, role_id });
 
         res.status(200).json({
           code: 200,
@@ -119,13 +119,13 @@ module.exports = {
   updateUserByID: async (req, res) => {
     try {
       const { id } = req.params;
-      const { first_name, last_name, email, password, telp, school_id, birthdate } = req.body;
+      const { first_name, last_name, email, password, telp, school_id, birthdate, gender } = req.body;
 
       console.log(password);
       if (!password) {
         console.log("Password null");
         await User.update(
-          { first_name, birthdate, school_id, last_name, telp, email },
+          { first_name, birthdate, school_id, last_name, telp, email, gender },
           {
             where: {
               id,
@@ -135,7 +135,7 @@ module.exports = {
       } else {
         const hashedPassword = bcrypt.hashSync(password, 10);
         await User.update(
-          { first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword },
+          { first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword, gender },
           {
             where: {
               id,
