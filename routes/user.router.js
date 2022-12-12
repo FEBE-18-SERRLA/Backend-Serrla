@@ -55,7 +55,7 @@ router.get("/", getAllUser);
 router.get("/:id", getUserByID);
 router.post("/", addUser);
 router.put("/:id", updateUserByID);
-router.put("/:id", upload.single("picture"), updatePictureByID);
+router.put("/:id/picture", upload.single("picture"), updatePictureByID);
 router.delete("/:id", deleteUserByID);
 
 router.get("/:user_id/favorites/", getAllFavorite);
