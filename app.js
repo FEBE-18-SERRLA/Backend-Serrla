@@ -42,6 +42,22 @@ app.get("/", (req, res) =>
   })
 );
 
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+
+  filename: (req, file, cb) => {
+    console.log(file);
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = null;
+// const upload = multer({ storage: fileStorage });
+
+app.use(multer({ storage: fileStorage }).single("picture"));
+
 app.use(cors());
 app.use(express.json());
 app.use(allRouter);
