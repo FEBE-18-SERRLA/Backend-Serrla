@@ -45,7 +45,6 @@ app.get("/", (req, res) =>
 app.use(cors());
 app.use(express.json());
 app.use(allRouter);
-app.use(multer({ storage: fileStorage }).single("picture"));
 
 app.listen(PORT, () => {
   console.log("running on port ", PORT);
