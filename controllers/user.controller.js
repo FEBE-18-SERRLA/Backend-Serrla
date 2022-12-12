@@ -159,6 +159,8 @@ module.exports = {
     }
   },
 
+  updatePictureByID: async (req, res) => {},
+
   getAllFavorite: async (req, res) => {
     try {
       const { user_id } = req.params;
