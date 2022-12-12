@@ -1,9 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const multer = require("multer");
-const path = require("path");
-
 const {
   getAllUser,
   addUser,
@@ -42,7 +39,7 @@ router.get("/", getAllUser);
 router.get("/:id", getUserByID);
 router.post("/", addUser);
 router.put("/:id", updateUserByID);
-router.put("/:id/picture", upload.single("picture"), updatePictureByID);
+router.put("/:id/picture", updatePictureByID);
 router.delete("/:id", deleteUserByID);
 
 router.get("/:user_id/favorites/", getAllFavorite);
