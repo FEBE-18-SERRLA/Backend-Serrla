@@ -1,6 +1,30 @@
 const express = require("express");
 const router = express.Router();
 
+const multer = require("multer");
+const path = require("path");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../images/");
+  },
+
+  filename: (req, file, cb) => {
+    console.log(file);
+    return cb(null, Date.now() + "-" + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "images/png" || file.mimetype === "images/jpg" || file.mimetype === "images/jpeg") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({ storage }, fileFilter);
+
 const {
   getAllUser,
   addUser,
@@ -37,7 +61,7 @@ const {
 router.get("/", getAllUser);
 router.get("/:id", getUserByID);
 router.post("/", addUser);
-router.put("/:id", updateUserByID);
+router.put("/:id", upload.single("picture"), updateUserByID);
 router.delete("/:id", deleteUserByID);
 
 router.get("/:user_id/favorites/", getAllFavorite);
