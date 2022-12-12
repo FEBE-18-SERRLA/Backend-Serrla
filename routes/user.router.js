@@ -6,16 +6,15 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./");
+    cb(null, "./images/");
   },
 
   filename: (req, file, cb) => {
-    console.log(req.file);
     return cb(null, Date.now() + "-" + file.fieldname + path.extname(file.originalname));
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 const {
   getAllUser,
