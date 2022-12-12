@@ -1,27 +1,8 @@
 const express = require("express");
-const app = express();
-
-const express = require("express");
 const router = express.Router();
 
 const multer = require("multer");
 const path = require("path");
-
-const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "images");
-  },
-
-  filename: (req, file, cb) => {
-    console.log(file);
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const fileFilter = null;
-const upload = multer({ storage: fileStorage });
-
-app.use(multer({ storage: fileStorage }).single("picture"));
 
 const {
   getAllUser,
