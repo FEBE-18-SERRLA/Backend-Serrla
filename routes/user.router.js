@@ -4,26 +4,25 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "../images/");
-  },
+try {
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "../images/");
+    },
 
-  filename: (req, file, cb) => {
-    console.log(file);
-    return cb(null, Date.now() + "-" + file.fieldname + path.extname(file.originalname));
-  },
-});
+    filename: (req, file, cb) => {
+      console.log(file);
+      return cb(null, Date.now() + "-" + file.fieldname + path.extname(file.originalname));
+    },
+  });
+} catch (error) {
+  res.status(500).json({
+    message: "server error",
+    error: error.message,
+  });
+}
 
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "images/png" || file.mimetype === "images/jpg" || file.mimetype === "images/jpeg") {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
-
-const upload = multer({ storage }, fileFilter);
+const upload = multer({ storage });
 
 const {
   getAllUser,
