@@ -6,11 +6,12 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./images/");
+    cb(null, "../images/");
   },
 
   filename: (req, file, cb) => {
-    return cb(null, Date.now() + "-" + file.fieldname + path.extname(file.originalname));
+    console.log(file);
+    cb(null, Date.now() + path.extname(file.originalname));
   },
 });
 
@@ -22,6 +23,7 @@ const {
   deleteUserByID,
   getUserByID,
   updateUserByID,
+  updatePictureByID,
   getAllFavorite,
   getFavoriteByID,
   addFavorite,
@@ -52,7 +54,8 @@ const {
 router.get("/", getAllUser);
 router.get("/:id", getUserByID);
 router.post("/", addUser);
-router.put("/:id", upload.single("picture"), updateUserByID);
+router.put("/:id", updateUserByID);
+router.put("/:id", upload.single("picture"), updatePictureByID);
 router.delete("/:id", deleteUserByID);
 
 router.get("/:user_id/favorites/", getAllFavorite);
