@@ -119,7 +119,7 @@ module.exports = {
   updateUserByID: async (req, res) => {
     try {
       const { id } = req.params;
-      const { picture } = req.file.filename;
+      const { picture } = req.file.path;
       const { first_name, last_name, email, password, telp, school_id, birthdate, gender } = req.body;
 
       console.log(password);
