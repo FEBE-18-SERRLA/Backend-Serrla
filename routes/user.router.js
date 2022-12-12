@@ -4,9 +4,9 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 
-const storage = multer.diskStorage({
+const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../images/");
+    cb(null, "images");
   },
 
   filename: (req, file, cb) => {
@@ -15,7 +15,8 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const fileFilter = null;
+const upload = multer({ storage: fileStorage });
 
 const {
   getAllUser,
