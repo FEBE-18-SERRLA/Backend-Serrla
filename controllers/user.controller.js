@@ -126,7 +126,7 @@ module.exports = {
       if (!password) {
         console.log("Password null");
         await User.update(
-          { first_name, birthdate, school_id, last_name, telp, email, gender },
+          { first_name, birthdate, school_id, last_name, telp, email, gender, picture },
           {
             where: {
               id,
@@ -136,7 +136,7 @@ module.exports = {
       } else {
         const hashedPassword = bcrypt.hashSync(password, 10);
         await User.update(
-          { first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword, gender },
+          { picture, first_name, birthdate, school_id, last_name, telp, email, password: hashedPassword, gender },
           {
             where: {
               id,

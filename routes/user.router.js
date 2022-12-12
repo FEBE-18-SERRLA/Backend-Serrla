@@ -4,23 +4,16 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 
-try {
-  const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, "../images/");
-    },
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../images/");
+  },
 
-    filename: (req, file, cb) => {
-      console.log(file);
-      return cb(null, Date.now() + "-" + file.fieldname + path.extname(file.originalname));
-    },
-  });
-} catch (error) {
-  res.status(500).json({
-    message: "server error",
-    error: error.message,
-  });
-}
+  filename: (req, file, cb) => {
+    console.log(file);
+    return cb(null, Date.now() + "-" + file.fieldname + path.extname(file.originalname));
+  },
+});
 
 const upload = multer({ storage });
 
