@@ -1,3 +1,5 @@
+const app = express();
+
 const express = require("express");
 const router = express.Router();
 
@@ -17,6 +19,8 @@ const fileStorage = multer.diskStorage({
 
 const fileFilter = null;
 const upload = multer({ storage: fileStorage });
+
+app.use(multer({ storage: fileStorage }).single("picture"));
 
 const {
   getAllUser,
