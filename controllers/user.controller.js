@@ -134,6 +134,7 @@ module.exports = {
         );
       } else {
         const hashedPassword = bcrypt.hashSync(password, 10);
+        console.log(password, hashedPassword);
         await User.update(
           { password: hashedPassword },
           {
