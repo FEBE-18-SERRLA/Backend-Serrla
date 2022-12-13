@@ -18,6 +18,27 @@ module.exports = {
     }
   },
 
+  searchEvent: async (req, res) => {
+    try {
+      const { keyword } = req.query;
+      console.log(keyword);
+      const events = await Event.findAll({
+        where: {
+          name: {
+            [Op.or]: {
+              [Op.like]: "%" + keyword + "%",
+            },
+          },
+        },
+      });
+      res.json({
+        code: 200,
+        status: "Success Get All Event",
+        data: events,
+      });
+    } catch (error) {}
+  },
+
   addEvent: async (req, res) => {
     try {
       const { name, description, image, date, time, location, loc_url, price } = req.body;
