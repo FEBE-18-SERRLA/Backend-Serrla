@@ -5,7 +5,15 @@ const bcrypt = require("bcrypt");
 module.exports = {
   getAllEvent: async (req, res) => {
     try {
-      const events = await Event.findAll();
+      const events = await Event.findAll({
+        where: {
+          date: {
+            [Op.or]: {
+              [Op.gte]: "2022-12-21",
+            },
+          },
+        },
+      });
       res.json({
         code: 200,
         status: "Success Get All Event",
