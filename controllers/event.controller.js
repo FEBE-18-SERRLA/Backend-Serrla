@@ -1,4 +1,5 @@
 const Event = require("../models/event");
+const { Op } = require("sequelize");
 const bcrypt = require("bcrypt");
 
 module.exports = {
@@ -36,7 +37,12 @@ module.exports = {
         status: "Success Get All Event",
         data: events,
       });
-    } catch (error) {}
+    } catch (error) {
+      res.status(500).json({
+        message: "server error",
+        error: error.message,
+      });
+    }
   },
 
   addEvent: async (req, res) => {
