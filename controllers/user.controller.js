@@ -159,18 +159,6 @@ module.exports = {
     }
   },
 
-  // updatePictureByID: async (req, res) => {
-  //   try {
-  //     console.log(req);
-  //     const picture = req.file.path;
-  //   } catch (error) {
-  //     res.status(500).json({
-  //       message: "server error",
-  //       error: error.message,
-  //     });
-  //   }
-  // },
-
   getAllFavorite: async (req, res) => {
     try {
       const { user_id } = req.params;
