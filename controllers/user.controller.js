@@ -121,7 +121,7 @@ module.exports = {
       const { id } = req.params;
       const { first_name, last_name, email, password, telp, school_id, birthdate, gender } = req.body;
 
-      console.log(password);
+      console.log(id, first_name, last_name, email, password, telp, school_id, birthdate, gender);
       if (!password) {
         console.log("Password null");
         await User.update(
